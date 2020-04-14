@@ -1,3 +1,16 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var FieldType;
 (function (FieldType) {
     FieldType[FieldType["InputField"] = 0] = "InputField";
@@ -7,137 +20,169 @@ var FieldType;
     FieldType[FieldType["SelectField"] = 4] = "SelectField";
     FieldType[FieldType["CheckboxField"] = 5] = "CheckboxField";
 })(FieldType || (FieldType = {}));
+var BaseField = /** @class */ (function () {
+    function BaseField() {
+    }
+    BaseField.prototype.createInput = function (name) {
+        var node = document.createElement("LI");
+        var textnode = document.createTextNode(name);
+        var inputnode = document.createElement("input");
+        inputnode.id = name;
+        node.appendChild(textnode);
+        node.appendChild(inputnode);
+        document.getElementById("namelist").appendChild(node);
+        return inputnode;
+    };
+    return BaseField;
+}());
 var FieldLabel = /** @class */ (function () {
     function FieldLabel() {
     }
     return FieldLabel;
 }());
-var InputField = /** @class */ (function () {
-    function InputField(value) {
-        this.name = "inputField";
-        this.label = "etykieta";
-        this.fieldType = FieldType.InputField;
-        this.value = value;
+var InputField = /** @class */ (function (_super) {
+    __extends(InputField, _super);
+    function InputField(name) {
+        var _this = _super.call(this) || this;
+        _this.name = name;
+        _this.label = "etykieta";
+        _this.fieldType = FieldType.InputField;
+        _this.value = "";
+        return _this;
     }
     InputField.prototype.render = function () {
-        var node = document.createElement("LI");
-        var textnode = document.createTextNode(this.name);
-        var inputnode = document.createElement("input");
-        node.appendChild(textnode);
-        node.appendChild(inputnode);
-        document.getElementById("namelist").appendChild(node);
+        this.createInput(this.name);
+    };
+    InputField.prototype.getValue = function () {
+        this.value = document.getElementById(this.name).value;
+        console.log(this.value);
     };
     return InputField;
-}());
-var TextAreaField = /** @class */ (function () {
-    function TextAreaField(value) {
-        this.name = "TextAreaField";
-        this.label = "etykieta";
-        this.fieldType = FieldType.TextAreaField;
-        this.value = value;
+}(BaseField));
+var TextAreaField = /** @class */ (function (_super) {
+    __extends(TextAreaField, _super);
+    function TextAreaField(name) {
+        var _this = _super.call(this) || this;
+        _this.name = name;
+        _this.label = "etykieta";
+        _this.fieldType = FieldType.TextAreaField;
+        _this.value = "";
+        return _this;
     }
     TextAreaField.prototype.render = function () {
-        var node = document.createElement("LI");
-        var textnode = document.createTextNode(this.name);
-        var inputnode = document.createElement("input");
-        node.appendChild(textnode);
-        node.appendChild(inputnode);
-        document.getElementById("namelist").appendChild(node);
+        var node = this.createInput(this.name);
+        node.type = 'textarea';
+    };
+    TextAreaField.prototype.getValue = function () {
+        this.value = document.getElementById(this.name).value;
+        console.log(this.value);
     };
     return TextAreaField;
-}());
-var DateField = /** @class */ (function () {
-    function DateField(value) {
-        this.name = "DateField";
-        this.label = "etykieta";
-        this.fieldType = FieldType.DateField;
-        this.value = value;
+}(BaseField));
+var DateField = /** @class */ (function (_super) {
+    __extends(DateField, _super);
+    function DateField(name) {
+        var _this = _super.call(this) || this;
+        _this.name = name;
+        _this.label = "etykieta";
+        _this.fieldType = FieldType.DateField;
+        _this.value = "";
+        return _this;
     }
     DateField.prototype.render = function () {
-        var node = document.createElement("LI");
-        var textnode = document.createTextNode(this.name);
-        var inputnode = document.createElement("input");
-        node.appendChild(textnode);
-        node.appendChild(inputnode);
-        document.getElementById("namelist").appendChild(node);
+        this.createInput(this.name);
+    };
+    DateField.prototype.getValue = function () {
+        this.value = document.getElementById(this.name).value;
+        console.log(this.value);
     };
     return DateField;
-}());
-var EmailField = /** @class */ (function () {
-    function EmailField(value) {
-        this.name = "EmailField";
-        this.label = "etykieta";
-        this.fieldType = FieldType.EmailField;
-        this.value = value;
+}(BaseField));
+var EmailField = /** @class */ (function (_super) {
+    __extends(EmailField, _super);
+    function EmailField(name) {
+        var _this = _super.call(this) || this;
+        _this.name = name;
+        _this.label = "etykieta";
+        _this.fieldType = FieldType.EmailField;
+        _this.value = "";
+        return _this;
     }
     EmailField.prototype.render = function () {
-        var node = document.createElement("LI");
-        var textnode = document.createTextNode(this.name);
-        var inputnode = document.createElement("input");
-        node.appendChild(textnode);
-        node.appendChild(inputnode);
-        document.getElementById("namelist").appendChild(node);
+        this.createInput(this.name);
+    };
+    EmailField.prototype.getValue = function () {
+        this.value = document.getElementById(this.name).value;
+        console.log(this.value);
     };
     return EmailField;
-}());
-var SelectField = /** @class */ (function () {
-    function SelectField(value) {
-        this.name = "SelectField";
-        this.label = "etykieta";
-        this.fieldType = FieldType.SelectField;
-        this.value = value;
+}(BaseField));
+var SelectField = /** @class */ (function (_super) {
+    __extends(SelectField, _super);
+    function SelectField(name) {
+        var _this = _super.call(this) || this;
+        _this.name = name;
+        _this.label = "etykieta";
+        _this.fieldType = FieldType.SelectField;
+        _this.value = "";
+        return _this;
     }
     SelectField.prototype.render = function () {
-        var node = document.createElement("LI");
-        var textnode = document.createTextNode(this.name);
-        var inputnode = document.createElement("input");
-        node.appendChild(textnode);
-        node.appendChild(inputnode);
-        document.getElementById("namelist").appendChild(node);
+        var node = this.createInput(this.name);
+    };
+    SelectField.prototype.getValue = function () {
+        this.value = document.getElementById(this.name).value;
+        console.log(this.value);
     };
     return SelectField;
-}());
-var CheckboxField = /** @class */ (function () {
-    function CheckboxField(value) {
-        this.name = "CheckboxField";
-        this.label = "etykieta";
-        this.fieldType = FieldType.CheckboxField;
-        this.value = value;
+}(BaseField));
+var CheckboxField = /** @class */ (function (_super) {
+    __extends(CheckboxField, _super);
+    function CheckboxField(name) {
+        var _this = _super.call(this) || this;
+        _this.name = name;
+        _this.label = "etykieta";
+        _this.fieldType = FieldType.CheckboxField;
+        _this.value = "";
+        return _this;
     }
     CheckboxField.prototype.render = function () {
-        var node = document.createElement("LI");
-        var textnode = document.createTextNode(this.name);
-        var inputnode = document.createElement("input");
-        node.appendChild(textnode);
-        node.appendChild(inputnode);
-        document.getElementById("namelist").appendChild(node);
+        var node = this.createInput(this.name);
+        node.type = 'checkbox';
+    };
+    CheckboxField.prototype.getValue = function () {
+        this.value = document.getElementById(this.name).checked;
+        console.log(this.value);
     };
     return CheckboxField;
-}());
+}(BaseField));
 var Form = /** @class */ (function () {
     function Form() {
         this.fieldArray = [];
     }
     Form.prototype.getValue = function () {
+        this.fieldArray.forEach(function (element) {
+            element.getValue();
+        });
     };
     Form.prototype.render = function () {
-        var inputField = new InputField("A");
+        var inputField = new InputField("Imię");
         inputField.render();
         this.fieldArray.push(inputField);
-        var textAreaField = new TextAreaField("A");
+        var textAreaField = new TextAreaField("Nazwisko");
         textAreaField.render();
         this.fieldArray.push(textAreaField);
-        var dateField = new DateField("A");
+        var dateField = new DateField("Data urodzenia");
         dateField.render();
         this.fieldArray.push(dateField);
-        var emailField = new EmailField("A");
+        var emailField = new EmailField("email");
         emailField.render();
         this.fieldArray.push(emailField);
-        var selectField = new SelectField("A");
+        var selectField = new SelectField("Wybrany kierunek studiów");
         selectField.render();
         this.fieldArray.push(selectField);
-        var checkboxField = new CheckboxField("A");
-        inputField.render();
+        var checkboxField = new CheckboxField("Czy preferujesz e-learning");
+        checkboxField.render();
         this.fieldArray.push(checkboxField);
     };
     return Form;
