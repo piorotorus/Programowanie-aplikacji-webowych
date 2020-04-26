@@ -54,8 +54,21 @@ var InputField = /** @class */ (function (_super) {
         this.createInput(this.name);
     };
     InputField.prototype.getValue = function () {
+        var _this = this;
+        var node = document.createElement("LI");
         this.value = document.getElementById(this.name).value;
+        var textnode = document.createTextNode(this.name + ": " + this.value);
+        node.appendChild(textnode);
         console.log(this.value);
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = function () { _this.clear(node, _this.value); };
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    };
+    InputField.prototype.clear = function (node, value) {
+        this.value = "";
+        node.remove(node);
     };
     return InputField;
 }(BaseField));
@@ -74,8 +87,21 @@ var TextAreaField = /** @class */ (function (_super) {
         node.type = 'textarea';
     };
     TextAreaField.prototype.getValue = function () {
+        var _this = this;
+        var node = document.createElement("LI");
         this.value = document.getElementById(this.name).value;
+        var textnode = document.createTextNode(this.name + ": " + this.value);
+        node.appendChild(textnode);
         console.log(this.value);
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = function () { _this.clear(node, _this.value); };
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    };
+    TextAreaField.prototype.clear = function (node, value) {
+        this.value = "";
+        node.remove(node);
     };
     return TextAreaField;
 }(BaseField));
@@ -93,8 +119,21 @@ var DateField = /** @class */ (function (_super) {
         this.createInput(this.name);
     };
     DateField.prototype.getValue = function () {
+        var _this = this;
+        var node = document.createElement("LI");
         this.value = document.getElementById(this.name).value;
+        var textnode = document.createTextNode(this.name + ": " + this.value);
+        node.appendChild(textnode);
         console.log(this.value);
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = function () { _this.clear(node, _this.value); };
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    };
+    DateField.prototype.clear = function (node, value) {
+        this.value = "";
+        node.remove(node);
     };
     return DateField;
 }(BaseField));
@@ -112,8 +151,21 @@ var EmailField = /** @class */ (function (_super) {
         this.createInput(this.name);
     };
     EmailField.prototype.getValue = function () {
+        var _this = this;
+        var node = document.createElement("LI");
         this.value = document.getElementById(this.name).value;
+        var textnode = document.createTextNode(this.name + ": " + this.value);
+        node.appendChild(textnode);
         console.log(this.value);
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = function () { _this.clear(node, _this.value); };
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    };
+    EmailField.prototype.clear = function (node, value) {
+        this.value = "";
+        node.remove(node);
     };
     return EmailField;
 }(BaseField));
@@ -131,8 +183,21 @@ var SelectField = /** @class */ (function (_super) {
         var node = this.createInput(this.name);
     };
     SelectField.prototype.getValue = function () {
+        var _this = this;
+        var node = document.createElement("LI");
         this.value = document.getElementById(this.name).value;
+        var textnode = document.createTextNode(this.name + ": " + this.value);
+        node.appendChild(textnode);
         console.log(this.value);
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = function () { _this.clear(node, _this.value); };
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    };
+    SelectField.prototype.clear = function (node, value) {
+        this.value = "";
+        node.remove(node);
     };
     return SelectField;
 }(BaseField));
@@ -151,8 +216,21 @@ var CheckboxField = /** @class */ (function (_super) {
         node.type = 'checkbox';
     };
     CheckboxField.prototype.getValue = function () {
+        var _this = this;
+        var node = document.createElement("LI");
         this.value = document.getElementById(this.name).checked;
+        var textnode = document.createTextNode(this.name + ": " + this.value);
+        node.appendChild(textnode);
         console.log(this.value);
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = function () { _this.clear(node, _this.value); };
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    };
+    CheckboxField.prototype.clear = function (node, value) {
+        this.value = "";
+        node.remove(node);
     };
     return CheckboxField;
 }(BaseField));

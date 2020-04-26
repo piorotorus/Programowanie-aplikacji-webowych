@@ -53,8 +53,24 @@ class InputField extends BaseField implements Field {
         this.createInput(this.name)
     }
     getValue() {
+        var node = document.createElement("LI");
         this.value = (<HTMLInputElement>document.getElementById(this.name)).value;
+        var textnode = document.createTextNode(this.name+": "+this.value);
+        node.appendChild(textnode);
+
         console.log(this.value);
+
+
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = () => { this.clear(node, this.value); }
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    }
+
+    clear(node: any, value: any) {
+        this.value = "";
+        node.remove(node);
     }
 }
 
@@ -76,8 +92,20 @@ class TextAreaField extends BaseField implements Field {
         node.type = 'textarea';
     }
     getValue() {
+        var node = document.createElement("LI");
         this.value = (<HTMLInputElement>document.getElementById(this.name)).value;
+        var textnode = document.createTextNode(this.name+": "+this.value);
+        node.appendChild(textnode);
         console.log(this.value);
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = () => { this.clear(node, this.value); }
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    }
+    clear(node: any, value: any) {
+        this.value = "";
+        node.remove(node);
     }
 
 }
@@ -99,8 +127,20 @@ class DateField extends BaseField implements Field {
         this.createInput(this.name);
     }
     getValue() {
+        var node = document.createElement("LI");
         this.value = (<HTMLInputElement>document.getElementById(this.name)).value;
+        var textnode = document.createTextNode(this.name+": "+this.value);
+        node.appendChild(textnode);
         console.log(this.value);
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = () => { this.clear(node, this.value); }
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    }
+    clear(node: any, value: any) {
+        this.value = "";
+        node.remove(node);
     }
 }
 class EmailField extends BaseField implements Field {
@@ -120,8 +160,20 @@ class EmailField extends BaseField implements Field {
         this.createInput(this.name);
     }
     getValue() {
+        var node = document.createElement("LI");
         this.value = (<HTMLInputElement>document.getElementById(this.name)).value;
+        var textnode = document.createTextNode(this.name+": "+this.value);
+        node.appendChild(textnode);
         console.log(this.value);
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = () => { this.clear(node, this.value); }
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    }
+    clear(node: any, value: any) {
+        this.value = "";
+        node.remove(node);
     }
 }
 class SelectField extends BaseField implements Field {
@@ -138,11 +190,23 @@ class SelectField extends BaseField implements Field {
         this.value = "";
     }
     render() {
-        var node=this.createInput(this.name);
+        var node = this.createInput(this.name);
     }
     getValue() {
+        var node = document.createElement("LI");
         this.value = (<HTMLInputElement>document.getElementById(this.name)).value;
+        var textnode = document.createTextNode(this.name+": "+this.value);
+        node.appendChild(textnode);
         console.log(this.value);
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = () => { this.clear(node, this.value); }
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    }
+    clear(node: any, value: any) {
+        this.value = "";
+        node.remove(node);
     }
 }
 class CheckboxField extends BaseField implements Field {
@@ -159,16 +223,29 @@ class CheckboxField extends BaseField implements Field {
         this.value = "";
     }
     render() {
-        var node=this.createInput(this.name);
-        
+        var node = this.createInput(this.name);
+
         node.type = 'checkbox';
 
     }
 
     getValue() {
+        var node = document.createElement("LI");
         this.value = (<HTMLInputElement>document.getElementById(this.name)).checked;
+        var textnode = document.createTextNode(this.name+": "+this.value);
+        node.appendChild(textnode);
+
         console.log(this.value);
 
+        var button = document.createElement('button');
+        button.innerText = "Usuń";
+        button.onclick = () => { this.clear(node, this.value); }
+        node.appendChild(button);
+        document.getElementById("ArrayList").appendChild(node);
+    }
+    clear(node: any, value: any) {
+        this.value = "";
+        node.remove(node);
     }
 }
 
@@ -176,6 +253,11 @@ class Form {
     fieldArray: Array<Field> = [];
 
     getValue() {
+
+
+
+
+
         this.fieldArray.forEach(element => {
             element.getValue();
         });
