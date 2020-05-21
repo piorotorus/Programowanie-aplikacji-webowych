@@ -1,0 +1,6 @@
+@import 'mixins';
+
+input {
+    @include standard-margin(15px);
+    background-color: blueviolet;
+}

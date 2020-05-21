@@ -6,16 +6,30 @@ import TextAreaField from './TextAreaField';
 import EmailField from './EmailField';
 import DateField from './DateField';
 import CheckboxField from './CheckboxField';
+import ExtendedSelect from './ExtendedSelect';
+import './styles/styles.scss';
+
+
 
 
 class Form {
     fieldArray: Array<Field> = [];
-
+    fieldArrayString: Array<string> = [];
     getValue() {
         this.fieldArray.forEach(element => {
             element.getValue();
+            if(window.localStorage.getItem('data') == null){
+           this.fieldArrayString.push(element.value);
+            }
         });
-        window.localStorage.setItem('data', JSON.stringify(this.fieldArray));
+        if(window.localStorage.getItem('data') == null){
+        window.localStorage.setItem('data', JSON.stringify(this.fieldArrayString));
+        }
+    }
+
+    setValue(){
+this.fieldArray.forEach(element => {
+    element.setValue()});
     }
 
     render() {
@@ -40,6 +54,11 @@ class Form {
         selectField.render();
         this.fieldArray.push(selectField);
 
+        let selectExtendedField: ExtendedSelect = new ExtendedSelect("Wybrany kierunek studiów");
+        selectExtendedField.render();
+        this.fieldArray.push(selectExtendedField);
+
+
         let checkboxField: CheckboxField = new CheckboxField("Czy preferujesz e-learning");
         checkboxField.render();
         this.fieldArray.push(checkboxField);
@@ -51,9 +70,17 @@ class Form {
     }
 
     loadDate() {
-      var loadItem= window.localStorage.getItem('data');
-      let data = JSON.parse(loadItem);
-      return data;
+        var loadItem = window.localStorage.getItem('data');
+        let data = JSON.parse(loadItem);
+        return data;
+    }
+
+    putLoadDataToObject(){
+       for (let index = 0; index < this.fieldArray.length; index++) {
+         
+        this.fieldArray[index].value=this.fieldArrayString[index];
+           
+       }
     }
 
     createUI() {
@@ -66,18 +93,28 @@ class Form {
         button2.innerText = "Zapisz";
         button2.onclick = () => { format.getValue() }
         node.appendChild(button2);
-      
-                var button3 = document.createElement('button');
-                button3.innerText = "send";
-                button3.onclick = () => { format.sendMessage() }
-                node.appendChild(button3);
-   
+
+        var button3 = document.createElement('button');
+        button3.innerText = "send";
+        button3.onclick = () => { format.sendMessage() }
+        node.appendChild(button3);
+
         document.getElementById("Main").appendChild(node);
     }
 }
 
 let format = new Form();
-format.fieldArray=format.loadDate();
+if (window.localStorage.getItem('data') != null) {
+
+    format.render();
+    format.fieldArrayString=format.loadDate();
+    
+    format.getValue();
+    format.putLoadDataToObject();
+    format.setValue();
+   
+   
+}
 format.createUI();
 
 

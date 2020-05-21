@@ -1,36 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
-const config = {
-  devtool: 'source-map', 
-  entry: './src/FormCreator.ts',
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-    ],
-  },
-  resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ],
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'FormCreator.js'
-  }
-};
-module.exports = config;
-
-/////////////////////////////
-const webpack = require('webpack');
-const path = require('path');
  
 const config = {
   devtool: 'source-map',
   entry: {
-    'FormCreator': './src/FromCreator.ts',
-    'client': './src/client.ts',
+    'FormCreator': './src/FormCreator.ts',
+  
   },
   module: {
     rules: [
@@ -72,8 +47,11 @@ const serverConfig = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
+        use:[ 'ts-loader',
+        'css-loader',
+        'sass-loader',
+     //   exclude: /node_modules/,
+      ],
       },
     ],
   },

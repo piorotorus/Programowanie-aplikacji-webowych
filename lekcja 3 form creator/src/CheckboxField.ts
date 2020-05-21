@@ -23,10 +23,18 @@ export default class CheckboxField extends BaseField implements Field {
         this.fieldType = FieldType.CheckboxField;
         this.value = "";
     }
-    render() {
-        var node = this.createInput(this.name);
+    setValue(){
+        var node = document.createElement("LI");
+        var textnode = document.createTextNode(this.name + ": " + this.value);
+        this.value = this.edit(textnode, this.value, this.name);
 
-        node.type = 'checkbox';
+        node.appendChild(textnode);
+    }
+
+    render() {
+        var node = this.createInput(this.name,"checkbox");
+
+       // node.type = 'checkbox';
 
     }
 

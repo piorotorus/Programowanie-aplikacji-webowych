@@ -23,8 +23,15 @@ export default class SelectField extends BaseField implements Field {
         this.fieldType = FieldType.SelectField;
         this.value = "";
     }
+    setValue(){
+        var node = document.createElement("LI");
+        var textnode = document.createTextNode(this.name + ": " + this.value);
+        this.value = this.edit(textnode, this.value, this.name);
+
+        node.appendChild(textnode);
+    }
     render() {
-        var node = this.createInput(this.name);
+        var node = this.createInput(this.name,"select");
     }
     getValue() {
         var node = document.createElement("LI");
@@ -43,5 +50,6 @@ export default class SelectField extends BaseField implements Field {
         node.appendChild(buttonEdit);
         document.getElementById("ArrayList").appendChild(node);
     }
+
 
 }

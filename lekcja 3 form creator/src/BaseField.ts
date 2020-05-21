@@ -4,10 +4,10 @@ export default class BaseField {
 
     
 
-    createInput(name: string) {
+    createInput(name: string,type:string) {
         var node = document.createElement("LI");
         var textnode = document.createTextNode(name);
-        var inputnode = document.createElement("input");
+        var inputnode = document.createElement(type);
         inputnode.id = name;
         node.appendChild(textnode);
         node.appendChild(inputnode);

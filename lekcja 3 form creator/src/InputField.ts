@@ -24,8 +24,16 @@ export default class InputField extends BaseField implements Field {
         this.value = "";
     }
 
+    setValue(){
+        var node = document.createElement("LI");
+        var textnode = document.createTextNode(this.name + ": " + this.value);
+        this.value = this.edit(textnode, this.value, this.name);
+
+        node.appendChild(textnode);
+    }
+
     render() {
-        this.createInput(this.name)
+        this.createInput(this.name,"input")
     }
     getValue() {
         var node = document.createElement("LI");

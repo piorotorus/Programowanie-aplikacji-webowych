@@ -14,4 +14,5 @@ export default interface Field {
     value: any;
     render(): void;
     getValue(): void;
+    setValue():void;
 }
