@@ -26,6 +26,7 @@ export default class ExtendedSelect extends BaseField implements Field{
         this.label = "etykieta"
         this.fieldType = FieldType.SelectField;
         this.value = "";
+/*
         this.fetchOptions<{name: string}>("https://restcountries.eu/rest/v2/all").then((data) => {
             data.map(x=>x.name).forEach(element => {
                 let option = <HTMLOptionElement>document.createElement("option");
@@ -33,8 +34,8 @@ export default class ExtendedSelect extends BaseField implements Field{
                 option.value = element;
                 this.element.options.add(option);
             })
-        })
-      // this.label=new Lable(this.label); 
+        });
+        */
     }
 
     setValue(){
@@ -46,7 +47,7 @@ export default class ExtendedSelect extends BaseField implements Field{
     }
         render() {
             var node = this.createInput(this.name,"select");
-           // node.type = 'select';
+   
         }
         getValue() {
             var node = document.createElement("LI");

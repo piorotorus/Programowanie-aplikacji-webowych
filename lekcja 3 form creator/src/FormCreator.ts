@@ -8,6 +8,7 @@ import DateField from './DateField';
 import CheckboxField from './CheckboxField';
 import ExtendedSelect from './ExtendedSelect';
 import './styles/styles.scss';
+import { stringify } from 'querystring';
 
 
 
@@ -15,6 +16,7 @@ import './styles/styles.scss';
 class Form {
     fieldArray: Array<Field> = [];
     fieldArrayString: Array<string> = [];
+    socket:WebSocket = new WebSocket("ws://localhost:8080");
     getValue() {
         this.fieldArray.forEach(element => {
             element.getValue();
@@ -25,6 +27,23 @@ class Form {
         if(window.localStorage.getItem('data') == null){
         window.localStorage.setItem('data', JSON.stringify(this.fieldArrayString));
         }
+
+
+        document.getElementById('send').addEventListener('click', () => {
+
+        
+            let message: string;
+            message=" ";
+            //message=this.fieldArray.toString();
+            this.fieldArray.forEach(element => {
+                message+=element.value;
+            });
+         // console.log(this.fieldArray[0].value);
+  
+ console.log(message);
+            this.socket.send(message);
+         })
+
     }
 
     setValue(){
@@ -65,8 +84,16 @@ this.fieldArray.forEach(element => {
     }
 
     sendMessage() {
-        let socket = new WebSocket("ws://localhost:8080");
-        socket.send('new message')
+        let that = this;
+        this.socket.onopen = (socket) => {
+          alert("Connected");
+          that.socket.send("Hello!");
+        };
+        this.socket.onmessage = function(event) {
+      
+          alert('Message received: ' + event.data);
+        };
+ 
     }
 
     loadDate() {
@@ -95,6 +122,7 @@ this.fieldArray.forEach(element => {
         node.appendChild(button2);
 
         var button3 = document.createElement('button');
+        button3.id="send";
         button3.innerText = "send";
         button3.onclick = () => { format.sendMessage() }
         node.appendChild(button3);
@@ -104,6 +132,7 @@ this.fieldArray.forEach(element => {
 }
 
 let format = new Form();
+/*
 if (window.localStorage.getItem('data') != null) {
 
     format.render();
@@ -115,6 +144,7 @@ if (window.localStorage.getItem('data') != null) {
    
    
 }
+*/
 format.createUI();
 
 

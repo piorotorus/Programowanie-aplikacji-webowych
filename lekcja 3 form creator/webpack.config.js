@@ -47,11 +47,9 @@ const serverConfig = {
     rules: [
       {
         test: /\.tsx?$/,
-        use:[ 'ts-loader',
-        'css-loader',
-        'sass-loader',
-     //   exclude: /node_modules/,
-      ],
+        use: 'ts-loader',
+       exclude: /node_modules/,
+      
       },
     ],
   },
