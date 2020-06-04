@@ -26,4 +26,10 @@ export default class BaseField {
         textnode.nodeValue = (name + ": " + value);
         return value;
     }
+
+    editSelect(textnode: any, value: string, name: string, element:any){
+        value = element.value;
+        textnode.nodeValue = (name + ": " + value);
+        return value;
+    }
 }

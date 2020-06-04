@@ -68,12 +68,12 @@ this.fieldArray.forEach(element => {
         let emailField: EmailField = new EmailField("email");
         emailField.render();
         this.fieldArray.push(emailField);
-
+/*
         let selectField: SelectField = new SelectField("Wybrany kierunek studiów");
         selectField.render();
         this.fieldArray.push(selectField);
-
-        let selectExtendedField: ExtendedSelect = new ExtendedSelect("Wybrany kierunek studiów");
+*/
+        let selectExtendedField: ExtendedSelect = new ExtendedSelect("Wybrany kraj");
         selectExtendedField.render();
         this.fieldArray.push(selectExtendedField);
 
